@@ -34,7 +34,7 @@ public class UsuarioService {
     }
 
     // Buscar por ID
-    public Optional<Usuario> buscarPorId(Integer id) {
+    public Optional<Usuario> buscarPorId(Long id) {
         return usuarioRepository.findById(id);
     }
 
@@ -44,7 +44,7 @@ public class UsuarioService {
     }
 
     // Actualizar usuario
-    public Usuario actualizar(Integer id, Usuario datosNuevos) {
+    public Usuario actualizar(Long id, Usuario datosNuevos) {
         Usuario existente = usuarioRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
@@ -58,7 +58,7 @@ public class UsuarioService {
     }
 
     // Eliminar usuario
-    public void eliminar(Integer id) {
+    public void eliminar(Long id) {
         if (!usuarioRepository.existsById(id)) {
             throw new RuntimeException("Usuario no encontrado");
         }

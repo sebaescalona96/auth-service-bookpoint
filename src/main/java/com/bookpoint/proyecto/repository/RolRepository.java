@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.bookpoint.proyecto.model.Rol;
 
 @Repository
-public interface RolRepository extends JpaRepository<Rol, Integer> {
+public interface RolRepository extends JpaRepository<Rol, Long> {
     Optional<Rol> findByNombre(String nombre);
     
 }

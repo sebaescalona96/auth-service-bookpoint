@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.bookpoint.proyecto.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
     Optional<Usuario> findByCorreo(String correo);
 
