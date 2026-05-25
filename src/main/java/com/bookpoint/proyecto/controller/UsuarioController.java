@@ -2,6 +2,9 @@ package com.bookpoint.proyecto.controller;
 
 import com.bookpoint.proyecto.model.Usuario;
 import com.bookpoint.proyecto.service.UsuarioService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -31,18 +34,15 @@ public class UsuarioController {
 
     // POST /usuarios/registrar
     @PostMapping("/registrar")
-    public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
-        try {
-            Usuario nuevo = usuarioService.registrar(usuario);
-            return ResponseEntity.ok(nuevo);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<Usuario> registrar(@Valid @RequestBody Usuario usuario) {
+        
+        Usuario nuevo = usuarioService.registrar(usuario);
+        return ResponseEntity.ok(nuevo);    
     }
 
     // POST /usuarios/login
     @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> login(@Valid @RequestBody Usuario usuario) {
         try {
             Usuario encontrado = usuarioService.login(
                 usuario.getCorreo(),
@@ -56,9 +56,7 @@ public class UsuarioController {
 
     // PUT /usuarios/{id}
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> actualizar(
-            @PathVariable Long id,
-            @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> actualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario) {
         try {
             Usuario actualizado = usuarioService.actualizar(id, usuario);
             return ResponseEntity.ok(actualizado);
