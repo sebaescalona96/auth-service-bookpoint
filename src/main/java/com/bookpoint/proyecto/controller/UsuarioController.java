@@ -42,7 +42,7 @@ public class UsuarioController {
 
     // POST /usuarios/login
     @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
         try {
             Usuario encontrado = usuarioService.login(
                 usuario.getCorreo(),
